@@ -46,8 +46,22 @@
 
 body {
     margin: 0;
-    background: #000;
     font-family: 'Google Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --d: 0.5rem;
+    background: radial-gradient(circle at var(--d) var(--d),
+            color-mix(in srgb, var(--md-sys-color-primary) 5%, black) calc(var(--d) - 0.1rem),
+            #000000 var(--d)) 0 0 / 3rem 3rem;
+    animation: moveDiagonal 8s linear infinite;
+}
+
+@keyframes moveDiagonal {
+    0% {
+        background-position: 3rem -3rem;
+    }
+
+    100% {
+        background-position: -3rem 3rem;
+    }
 }
 
 .title {
@@ -89,6 +103,8 @@ p {
     transition: box-shadow 0.2s, transform 0.2s;
     border: 0.15rem solid var(--md-sys-color-primary);
     text-align: center;
+    backdrop-filter: blur(0.5rem);
+    -webkit-backdrop-filter: blur(0.5rem);
 }
 
 .card:hover {
@@ -145,7 +161,7 @@ p {
     display: block;
     background: var(--md-sys-color-surface, #fff);
     height: 0.22rem;
-    border-radius: 2px;
+    border-radius: 0.1rem;
     position: absolute;
     left: 0;
     width: 100%;
@@ -171,7 +187,7 @@ p {
     z-index: 99;
     opacity: 0;
     visibility: hidden;
-    backdrop-filter: blur(0px);
+    backdrop-filter: blur(0rem);
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -180,7 +196,7 @@ p {
 .menu-wrapper.active .menu-overlay {
     opacity: 1;
     visibility: visible;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(0.5rem);
 }
 
 .dropdown-menu {
@@ -190,14 +206,14 @@ p {
     background: rgba(0, 0, 0, 0.85);
     border-radius: 1.3rem;
     border: 0.15rem solid var(--md-sys-color-primary, #1f45fe);
-    box-shadow: 0 8px 32px rgba(31, 69, 254, 0.2);
+    box-shadow: 0 0.5rem 2rem rgba(31, 69, 254, 0.2);
     padding: 1.2rem 0;
     z-index: 101;
-    min-width: 160px;
+    min-width: 10rem;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px) scale(0.95);
-    backdrop-filter: blur(12px);
+    transform: translateY(-0.6rem) scale(0.95);
+    backdrop-filter: blur(0.75rem);
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -211,14 +227,13 @@ p {
     padding: 0.75rem 2rem;
     display: block;
     transition: all 0.2s ease;
-    border-left: 3px solid transparent;
 }
 
 .dropdown-menu a:hover {
     background: rgba(31, 69, 254, 0.1);
     color: var(--md-sys-color-surface, #fff);
     border-left-color: var(--md-sys-color-primary, #1f45fe);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(1rem);
 }
 
 .menu-wrapper.active .dropdown-menu {
